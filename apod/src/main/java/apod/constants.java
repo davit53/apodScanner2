@@ -45,10 +45,13 @@ public class constants
             HttpResponse<String> response;
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+            //if status code in between 200 and 299 means data fetch sucessfull
             if (response.statusCode() >= 200 && response.statusCode() <= 299) 
             {
+                //therefore return data
                 return response.body();
             } 
+            //otherwise display error code
             else 
             {
                 System.out.println("Error, status code: " + response.statusCode());
