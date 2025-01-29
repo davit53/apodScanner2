@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 
 public class constants 
 {
- 
+
     private static final String APOD_KEY = "https://api.nasa.gov/planetary/apod?api_key=O29C3tvln6e4tamVKaxGdXpA2UmXFHTBRnzLpE1J";
 
 
