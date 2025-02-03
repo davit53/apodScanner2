@@ -25,7 +25,10 @@ public class constants
         return APOD_KEY;
     }
 
-    //this funciton will attempt to request the api for the data and Return JSON response string
+    /**
+     * @description this funciton will attempt to request the api for the data
+     * @return JSON response string
+     */
     public static String makeRequest()
     {
 

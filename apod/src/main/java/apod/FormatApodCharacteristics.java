@@ -19,7 +19,10 @@ public class FormatApodCharacteristics extends constants
     private String copyright;
     private String mediaType;
 
-    //this funciton will format the data uisng JSON parsing
+    /**
+     * @description this funciton will format the data uisng JSON parsing
+     * @param response
+     */
     public FormatApodCharacteristics(String response)
     {
         //check if the response is null, if it is, end function
@@ -80,7 +83,9 @@ public class FormatApodCharacteristics extends constants
         return this.mediaType;
     }
 
-    //display the formatted data
+    /**
+     * @description display the formatted data
+     */
     public void displayData() 
     {
         System.out.println("=== NASA Astronomy Picture of the Day ===");
