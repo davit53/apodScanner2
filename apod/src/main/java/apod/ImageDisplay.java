@@ -33,12 +33,21 @@ public class ImageDisplay extends JFrame
             URL url = new URL(imageUrl);
             Image img = ImageIO.read(url);
 
+            //use manual positioning for the picture in the window
+            setLayout(null);
+
             if(img != null)
             {
                 ImageIcon imageIcon = new ImageIcon(img);
                 displayField = new JLabel(imageIcon);
+
+                //set picture position to top left corner
+                displayField.setBounds(5, 5, imageIcon.getIconWidth(), imageIcon.getIconHeight());
                 add(displayField);
                 pack();
+
+                //Allocate more space in the window to dislay analytics about the picture
+                setSize(getWidth() + 100, getHeight() + 100);
             }
 
         } catch (Exception e) {
