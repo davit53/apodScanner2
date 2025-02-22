@@ -13,13 +13,28 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-        <dependencies>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
         <!-- JSON Parsing Library -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-vision</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

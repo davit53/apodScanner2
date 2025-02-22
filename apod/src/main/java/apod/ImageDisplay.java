@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 /**
  * @author Davit Najaryan
- * @description 
+ * @description the is the main class which takes the image and the reuslts of the analysis and displays them to the gui
  * @date January 28, 2025
  */
 
@@ -71,6 +71,14 @@ public class ImageDisplay extends JFrame
         apod.displayData();
 
         ImageDisplay i = new ImageDisplay(apod.getPictureURL());
+
+        //make call to image anaylzer class with the url of the picture as the parameter
+        String resultOfAnalysis = ImageAnalyzer.analyzeImg(apod.getPictureURL());
+
+        JLabel resultLabel = new JLabel("Analysis: " + resultOfAnalysis);
+        System.out.println(resultLabel);
+        i.add(resultLabel);
+        i.setVisible(true);
 
     }
 }
