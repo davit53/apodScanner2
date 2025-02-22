@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 /**
  * @author Davit Najaryan
- * @description 
+ * @description this class will contain the API key and make a request to access the api
  * @date January 28, 2025
  */
 
