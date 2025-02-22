@@ -88,7 +88,7 @@ public class FormatApodCharacteristics extends constants
      */
     public void displayData() 
     {
-        System.out.println("=== NASA Astronomy Picture of the Day ===");
+        System.out.println("--- NASA Astronomy Picture of the Day ---");
         System.out.println("Title: " + this.title);
         System.out.println("Date: " + this.date);
         System.out.println("Description: " + this.explanation);
