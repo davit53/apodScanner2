@@ -6,9 +6,9 @@ This project uses NASA's APOD API to get a picture and analyzes it using Google 
 🔧 Setup & Installation
 1️⃣ Clone the Repository
 
-    git clone https://github.com/yourusername/nasa-apod-vision-ai-java.git
+    git clone https://github.com/davit53/apodScanner2.git
   
-    cd nasa-apod-vision-ai-java
+    cd apodScanner2
 
 2️⃣ API Keys Setup
 
