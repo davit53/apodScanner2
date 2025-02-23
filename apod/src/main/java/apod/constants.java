@@ -57,7 +57,7 @@ public class constants
             //otherwise display error code
             else 
             {
-                System.out.println("Error, status code: " + response.statusCode());
+                System.out.println("Error: " + response.statusCode());
             }
             
         } catch(Exception  e) 

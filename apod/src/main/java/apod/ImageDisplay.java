@@ -75,8 +75,10 @@ public class ImageDisplay extends JFrame
         //make call to image anaylzer class with the url of the picture as the parameter
         String resultOfAnalysis = ImageAnalyzer.analyzeImg(apod.getPictureURL());
 
-        JLabel resultLabel = new JLabel("Analysis: " + resultOfAnalysis);
+        //print the result of the image analysis
+        JLabel resultLabel = new JLabel("RESULT OF THE ANALYSIS: " + resultOfAnalysis);
         System.out.println(resultLabel);
+        
         i.add(resultLabel);
         i.setVisible(true);
 

@@ -7,9 +7,13 @@
 package apod;
 
 import com.google.cloud.vision.v1.AnnotateImageRequest;
+import com.google.cloud.vision.v1.AnnotateImageResponse;
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
+import com.google.cloud.vision.v1.EntityAnnotation;
 import com.google.cloud.vision.v1.Feature;
 import com.google.cloud.vision.v1.Feature.Type;
 import com.google.cloud.vision.v1.Image;
+import com.google.cloud.vision.v1.ImageAnnotatorClient;
 import com.google.protobuf.ByteString;
 
 import java.io.InputStream;
@@ -64,7 +68,58 @@ public class ImageAnalyzer
             //add the current request to the array
             API_requests_array.add(req);
 
-            return "";
+           //make client to send the made reqest to the vision API
+           //try with resource block used since ImageAnnotatorClient automatically calls close
+            try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) 
+            {
+
+                //need 2 sperate variables: 1 for an indvidul request and 1 an array of responses as the API sends back the responses as a batch for efficency
+                BatchAnnotateImagesResponse API_response; 
+                List<AnnotateImageResponse> API_responses_arr;
+
+                //send the image array to the API and recieve the response
+                API_response = client.batchAnnotateImages(API_requests_array);
+
+                //gets the reponse from the batch of responses sent by the API and stores in array
+                API_responses_arr = API_response.getResponsesList();
+
+                //string for storing the results
+                StringBuilder finalResult = new StringBuilder("Detected: ");
+
+                //loop through every image response
+                for (int i = 0; i < API_responses_arr.size(); i++)
+                {
+                    //store the response at the current index
+                    AnnotateImageResponse res = API_responses_arr.get(i);
+                    
+                    //process that response
+                    //get the list of label annotations from the response
+                    List<EntityAnnotation> annotationsArr = res.getLabelAnnotationsList();
+
+                    //loop through the annotations list
+                    for (int j = 0; j < annotationsArr.size(); j++) 
+                    {
+                        
+                        //store the current annotation
+                        EntityAnnotation currAnnotation = annotationsArr.get(j);
+
+                        //store the description of the current annotation in a string
+                        String descriptionOfCurrAnnotation = currAnnotation.getDescription();
+
+                        //store the precentage of how sure the AI is about the image object analysis in a variable
+                        float precentage = currAnnotation.getScore();
+                        precentage *= 100;
+
+                        //append the desctiption of the annotation along with the percentage
+                        finalResult.append(descriptionOfCurrAnnotation);
+                        finalResult.append(String.format(" (%.2f", precentage, "%)"));
+                        finalResult.append("%), ");
+                    }
+                }
+
+                return finalResult.toString();
+            }
+            
         } catch (Exception e) {
 
             e.printStackTrace();
