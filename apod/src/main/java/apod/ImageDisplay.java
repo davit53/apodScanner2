@@ -1,7 +1,7 @@
 package apod;
 
 import javax.swing.*;
-import java.awt.Image;
+import java.awt.*;
 import java.net.URL;
 import javax.imageio.ImageIO;
 
@@ -26,6 +26,13 @@ public class ImageDisplay extends JFrame
         setTitle("APOD Image");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //create a layout
+        BorderLayout myLayout = new BorderLayout();
+        setLayout(myLayout);
+
+        //make a panel of the image
+        JPanel panel = new JPanel(new BorderLayout());
+
         //open the image using try catch so program dosent crash
         try {
 
@@ -33,27 +40,24 @@ public class ImageDisplay extends JFrame
             URL url = new URL(imageUrl);
             Image img = ImageIO.read(url);
 
-            //use manual positioning for the picture in the window
-            setLayout(null);
+            //use borderLayout to add components to specific regions
+            setLayout(new BorderLayout());
 
             if(img != null)
             {
                 ImageIcon imageIcon = new ImageIcon(img);
                 displayField = new JLabel(imageIcon);
 
-                //set picture position to top left corner
-                displayField.setBounds(5, 5, imageIcon.getIconWidth(), imageIcon.getIconHeight());
-                add(displayField);
-                pack();
+                //add the picutre to the panel and position it to the left
+                panel.add(displayField, BorderLayout.WEST);
 
-                //Allocate more space in the window to dislay analytics about the picture
-                setSize(getWidth() + 100, getHeight() + 100);
             }
 
         } catch (Exception e) {
             System.out.println("Image not found.");
         }
 
+        add(panel, BorderLayout.CENTER);
         setVisible(true);
 
     }
@@ -75,11 +79,21 @@ public class ImageDisplay extends JFrame
         //make call to image anaylzer class with the url of the picture as the parameter
         String resultOfAnalysis = ImageAnalyzer.analyzeImg(apod.getPictureURL());
 
+        //make a button
+        JButton button = new JButton("Analyze");
+
+        //add the button and position it to the right
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanel.add(button);
+
+        //position the button on the top of the border
+        i.add(topPanel, BorderLayout.NORTH);
+
         //print the result of the image analysis
-        JLabel resultLabel = new JLabel("RESULT OF THE ANALYSIS: " + resultOfAnalysis);
-        System.out.println(resultLabel);
-        
-        i.add(resultLabel);
+        System.out.println(resultOfAnalysis);
+
+        i.revalidate();
+        i.repaint();
         i.setVisible(true);
 
     }

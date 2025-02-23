@@ -113,7 +113,7 @@ public class ImageAnalyzer
                         //append the desctiption of the annotation along with the percentage
                         finalResult.append(descriptionOfCurrAnnotation);
                         finalResult.append(String.format(" (%.2f", precentage, "%)"));
-                        finalResult.append("%), ");
+                        finalResult.append("%)\n");
                     }
                 }
 
