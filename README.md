@@ -11,7 +11,8 @@ This project uses NASA's APOD API to get a picture and analyzes it using Google 
     cd nasa-apod-vision-ai-java
 
 2️⃣ API Keys Setup
-API key included - no need to get your own
+
+Nasa API key included - no need to get your own
 
 Google Vision AI
 Set up Google Cloud Vision AI on your local machine:
